@@ -8,7 +8,6 @@ const api = (app) => {
 
     router.get('/tables', async (req, res, next) => {
         try {
-
             res.status(200).json({
                 data: reservations,
                 message: 'Tables listed'
@@ -18,18 +17,44 @@ const api = (app) => {
         }
     })
 
+    router.get('/waiting-list', async (req, res, next) => {
+        try {
+            res.status(200).json({
+                data: waitingList,
+                message: 'Waiting List listed'
+            })
+        } catch (err) {
+            next(err);
+        }
+    })
+
     router.post('/tables', async (req, res, next) => {
         try {
-            reservations.push({
-                customerName: req.body.customerName,
-                customerNumber: req.body.customerNumber,
-                customerEmail: req.body.customerEmail,
-                customerId: req.body.customerId,
-            })
-            res.status(200).json({
-                data: reservations,
-                message: "Reservation has been created succesfully"
-            })
+            if (reservations.length < 4)
+            {
+                reservations.push({
+                    customerName: req.body.customerName,
+                    customerNumber: req.body.customerNumber,
+                    customerEmail: req.body.customerEmail,
+                    customerId: req.body.customerId,
+                })
+                res.status(200).json({
+                    data: reservations,
+                    message: "Reservation has been created succesfully"
+                })
+
+            } else {
+                waitingList.push({
+                    customerName: req.body.customerName,
+                    customerNumber: req.body.customerNumber,
+                    customerEmail: req.body.customerEmail,
+                    customerId: req.body.customerId,
+                })
+                res.status(200).json({
+                    data: WaitingList,
+                    message: "Reservation has been added to WaitingList"
+                })
+            }
         } catch (err) {
             next(err);
         }

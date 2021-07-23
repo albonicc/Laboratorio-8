@@ -71,6 +71,7 @@
 <!-- BELOW CODE IS CRITICAL. IT HANDLES HOW FORM DATA IS LOADED FROM OUR SERVER -->
 <script type="text/javascript">
 const tableList = document.querySelector('#tableList');
+const waitingList = document.querySelector('#waitList');
 
 const getReservations = () => {
   const url = 'http://localhost:3000/api/tables'
@@ -88,7 +89,27 @@ const getReservations = () => {
       <h2>${element.customerNumber}</h2>
     </li>
     `
+  }))
+  // .then(data => console.log(typeof(data.data)))
+  // .then(data => console.log(data.data))
+}
 
+const getWaitingList = () => {
+  const url = 'http://localhost:3000/api/waitingList'
+  fetch(url)
+  .then(res => res.json())
+  .then(data => data.data.forEach((element, index) => {
+    console.log(element)
+    waitingList.innerHTML += `
+    <li class="list-group-item mt-4">
+      <h2>Table #${index + 1}</h2>
+      <hr>
+      <h2>${element.customerId}</h2>
+      <h2>${element.customerName}</h2>
+      <h2>${element.customerEmail}</h2>
+      <h2>${element.customerNumber}</h2>
+    </li>
+    `
   }))
   // .then(data => console.log(typeof(data.data)))
   // .then(data => console.log(data.data))
