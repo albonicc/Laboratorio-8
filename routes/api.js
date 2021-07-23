@@ -30,7 +30,8 @@ const api = (app) => {
 
     router.post('/tables', async (req, res, next) => {
         try {
-            if (reservations.length < 4)
+            console.log(reservations.length)
+            if (reservations.length <= 5)
             {
                 reservations.push({
                     customerName: req.body.customerName,
@@ -51,7 +52,7 @@ const api = (app) => {
                     customerId: req.body.customerId,
                 })
                 res.status(200).json({
-                    data: WaitingList,
+                    data: waitingList,
                     message: "Reservation has been added to WaitingList"
                 })
             }

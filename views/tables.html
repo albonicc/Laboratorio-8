@@ -74,7 +74,7 @@ const tableList = document.querySelector('#tableList');
 const waitingList = document.querySelector('#waitList');
 
 const getReservations = () => {
-  const url = 'http://localhost:3000/api/tables'
+  const url = 'http://localhost:3000/api/tables';
   fetch(url)
   .then(res => res.json())
   .then(data => data.data.forEach((element, index) => {
@@ -95,7 +95,7 @@ const getReservations = () => {
 }
 
 const getWaitingList = () => {
-  const url = 'http://localhost:3000/api/waitingList'
+  const url = 'http://localhost:3000/api/waiting-list';
   fetch(url)
   .then(res => res.json())
   .then(data => data.data.forEach((element, index) => {
@@ -116,6 +116,7 @@ const getWaitingList = () => {
 }
 
 getReservations();
+getWaitingList();
 </script>
 
 </html>
