@@ -2,6 +2,9 @@ const express = require('express');
 const app = express();
 
 const { config } = require('./config/index');
+const api = require('./routes/api.js');
+
+api(app);
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/views/home.html');
