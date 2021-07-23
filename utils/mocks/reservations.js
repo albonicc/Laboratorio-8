@@ -1,4 +1,4 @@
-const tables = [
+const reservations = [
     {
         "customerName":"Nicolas",
         "phoneNumber":"222-159-6781",
@@ -7,4 +7,4 @@ const tables = [
     }
 ]
 
-module.exports = { tables }
+module.exports = { reservations }

@@ -1,5 +1,6 @@
 const express = require('express');
-const { tables } = require('../utils/mocks/tables');
+const { reservations } = require('../utils/mocks/reservations');
+const { waitingList } = require('../utils/mocks/waitingList');
 
 const api = (app) => {
     const router = express.Router();
@@ -9,7 +10,7 @@ const api = (app) => {
         try {
 
             res.status(200).json({
-                data: tables,
+                data: reservations,
                 message: 'Tables listed'
             })
         } catch (err) {
@@ -19,26 +20,14 @@ const api = (app) => {
 
     router.post('/tables', async (req, res, next) => {
         try {
-
-            console.log(req.body)
-        
-            // res.status(200).json({
-            //     data: {
-            //         customerName:
-            //         phoneNumber:
-            //         customerEmail:
-            //         customerId:
-            //     },
-            //     message: 'Table created'
-            // })
-            tables.push({
+            reservations.push({
                 customerName: req.body.customerName,
-                phoneNumber: req.body.customerName,
-                customerEmail: req.body.customerName,
-                customerId: req.body.customerName,
+                customerNumber: req.body.customerNumber,
+                customerEmail: req.body.customerEmail,
+                customerId: req.body.customerId,
             })
             res.status(200).json({
-                data: tables,
+                data: reservations,
                 message: "Reservation has been created succesfully"
             })
         } catch (err) {
