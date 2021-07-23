@@ -7,11 +7,39 @@ const api = (app) => {
 
     router.get('/tables', async (req, res, next) => {
         try {
-            const tablesData = await Promise.resolve(tables);
 
             res.status(200).json({
-                data: tablesData,
+                data: tables,
                 message: 'Tables listed'
+            })
+        } catch (err) {
+            next(err);
+        }
+    })
+
+    router.post('/tables', async (req, res, next) => {
+        try {
+
+            console.log(req.body)
+        
+            // res.status(200).json({
+            //     data: {
+            //         customerName:
+            //         phoneNumber:
+            //         customerEmail:
+            //         customerId:
+            //     },
+            //     message: 'Table created'
+            // })
+            tables.push({
+                customerName: req.body.customerName,
+                phoneNumber: req.body.customerName,
+                customerEmail: req.body.customerName,
+                customerId: req.body.customerName,
+            })
+            res.status(200).json({
+                data: tables,
+                message: "Reservation has been created succesfully"
             })
         } catch (err) {
             next(err);
