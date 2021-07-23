@@ -31,7 +31,7 @@ const api = (app) => {
     router.post('/tables', async (req, res, next) => {
         try {
             console.log(reservations.length)
-            if (reservations.length <= 5)
+            if (reservations.length <= 4)
             {
                 reservations.push({
                     customerName: req.body.customerName,
